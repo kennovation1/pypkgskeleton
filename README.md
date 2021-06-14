@@ -138,7 +138,12 @@ packages = find:
 ```
 
 # `__init__.py` configuration
-**TODO**
+See `./pkgskeleton/__init__.py` for an annotated example `__init__.py` file.
+This file may be empty, but the client application import experience can be
+improved by providing some additional imports in the `__init__.py` file so that
+the caller does not have to.
+
+How the `__init__.py` file is configured affects the client import options.
 
 # Building your package
 There are ways of building and testing your packaging in an iterative
@@ -173,7 +178,49 @@ pip install --force-reinstall git+ssh://git@gitlab.com/<repo_path>.git@<tag_or_b
 ```
 Use `pip list` or `pip freeze` to see what is installed.
 Use `pip uninstall pkgskeleton` to remove the package from the virutal environment.
-```
 
 # Importing your package
-**TODO**
+The example below shows various ways that you can import your packages, modules, and
+functions and classes within the modules. The latter group of these examples are
+dependent on the proper configuration of `__init__.py`.
+
+```
+# Example imports and use of package that will work
+# even if package __init__.py files are empty.
+
+# Use function defined in a top module
+import pkgskeleton.topmodule2
+pkgskeleton.topmodule2.mtest()
+# Prints: This is pkgskeleton.topmodule2
+
+# Same as above, but using 'from' to save some typing in the function call
+from pkgskeleton import topmodule1
+topmodule1.mtest()
+# Prints: This is pkgskeleton.topmodule1
+
+# Access function in a module in a sub-package
+import pkgskeleton.subpkg1.module1
+pkgskeleton.subpkg1.module1.mtest()
+# Prints: This is pkgseleton.subpkg1.module1
+
+###########################################################
+
+# To make imports a little cleaner, we can add some imports
+# to the top-level __init__.py file to create aliases and then
+# then we can use these aliases as follows.
+# See the __init__.py file to see how to create these aliases.
+
+# Use function defined in a top module
+from pkgskeleton import TM2mtest
+TM2mtest()
+# Prints: This is pkgskeleton.topmodule2
+
+# Use function defined in a module in a sub-package
+from pkgskeleton import Sub1M1mtest
+Sub1M1mtest()
+# Prints: This is pkgseleton.subpkg1.module1
+
+# Use a module-level alias
+from pkgskeleton import Sub2M2
+Sub2M2.mtest()
+```
