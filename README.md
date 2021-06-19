@@ -24,6 +24,20 @@ Ultimately the following is very simple. It's interesting that it took
 a lot of effort to remove all of the extra noise any variability that exists
 in standard documentation to distill down the the practical essentials.
 
+## References
+There are many internet resources for Python packaging. Unfortunately that all seem
+fairly divergent. One particular resource that I found to be particuilarly useful
+in developing this project was: https://changhsinlee.com/python-package/
+
+# TODO
+Add instructions for how to create dependencies
+Consider adding something like:
+```
+[options]
+install_requires =
+    requests >= 2.25
+```
+
 # Setup
 You should do all of the following in a Python virtual environment.
 Describing virtual environments is beyond the scope of this project.
@@ -135,7 +149,14 @@ url = https://project-home-page
 
 [options]
 packages = find:
+
+install_requires =
+    pkg1name >= pkg1minversion
+    pkg2anyversion
 ```
+
+You can use `pip freeze` to get a list of packages to include in `install_requires`.
+If you have no additional packages, you can omit this option.
 
 # `__init__.py` configuration
 See `./pkgskeleton/__init__.py` for an annotated example `__init__.py` file.
@@ -152,9 +173,19 @@ just let you build/deploy/test in a way that assume that you'll not do
 this often and therefore do not need to optimize the process.
 ```
 cd <to directory containing setup.cfg>
+
 # Update the version value in setup.cfg
 python -m build
 ```
+
+# Testing your package
+For basic testing, you can create a local editable installation using:
+`pip install -e .`
+This means that as the files change, you don't need to keep re-installing.
+
+To perform a true test, create a new virtual environment in a separate directory
+and run:
+`pip install --force-reinstall <path to tar.gz file in ./dist directory>
 
 # Distribute your package
 The files in the above `dist` directory can be used by as arguments to `pip` for installation.

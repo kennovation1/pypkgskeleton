@@ -13,6 +13,13 @@ import pkgskeleton.subpkg2.module2
 ##################################################
 # Examples of creating aliases for deep modules
 
+# NOTE: Do not name a top module to be the same as the package name.
+# For example having a top module called pkgskeleton.py in the
+# pkgskeleton package will cause an import error.
+
+# Elevate all of topmodule1 to the client so that objects may be imported as
+# from pkgskeleton import <something defined in topmodule1>
+
 # Function/Class level alias examples
 
 # Expose TM2mtest as an alias and therefore allow an import such as:
