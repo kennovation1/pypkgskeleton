@@ -173,7 +173,7 @@ This means that as the files change, you don't need to keep re-installing.
 
 To perform a true test, create a new virtual environment in a separate directory
 and run:
-`pip install --force-reinstall <path to tar.gz file in ./dist directory>
+`pip install --force-reinstall <path to tar.gz file in ./dist directory>`
 
 # Distribute your package
 The files in the above `dist` directory can be used by as arguments to `pip` for installation.
@@ -202,6 +202,9 @@ Use `pip uninstall pypkgskeleton` to remove the package from the virutal environ
 The example below shows various ways that you can import your packages, modules, and
 functions and classes within the modules. The latter group of these examples are
 dependent on the proper configuration of `__init__.py`.
+
+The following examples are also in the file `importtest.py` which you can run to test
+your installation and your `__init__.py` configuration.
 
 ```
 # Example imports and use of package that will work
