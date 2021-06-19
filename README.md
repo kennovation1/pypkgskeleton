@@ -29,11 +29,6 @@ There are many internet resources for Python packaging. Unfortunately they all s
 fairly divergent. One resource that I found to be particuilarly useful
 in developing this project was: https://changhsinlee.com/python-package/
 
-# TODO
-## NOT QUITE DONE!
-This worked when installing and pointing to a local directory, tarball, or wheel file.
-However, when I try to pip install from git, the __init__.py does not work.
-
 # Setup
 You should do all of the following in a Python virtual environment.
 Describing virtual environments is beyond the scope of this project.
