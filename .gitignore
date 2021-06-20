@@ -1,4 +1,1 @@
-dist/*
-build/*
-pypkgskeleton.egg-info
 pypkgskeleton/__pycache__/*
