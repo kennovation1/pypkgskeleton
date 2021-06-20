@@ -57,6 +57,12 @@ each with multiple modules.
 You can delete one or both subpackages or add more.
 You can have one or more modules in the root package.
 
+*NOTE:* Do not name a top module to be the same as the package name.
+For example having a top module called pypkgskeleton.py in the
+pypkgskeleton package will cause an import error.
+Another error to avoid is don't make the only difference
+be just case differences since that is not a sufficient distinction.
+
 Below, we'll look at configuring `__init__.py` to show different ways
 of allowing the client program to more easily import modules.
 
@@ -199,50 +205,10 @@ Use `pip list` or `pip freeze` to see what is installed.
 Use `pip uninstall pypkgskeleton` to remove the package from the virutal environment.
 
 # Importing your package
-The example below shows various ways that you can import your packages, modules, and
-functions and classes within the modules. The latter group of these examples are
-dependent on the proper configuration of `__init__.py`.
+There is a direct connection between what (if anything) you put in your top-level
+`__init__.py` file and how the client application imports your objects.
+Review the annotated `__init__.py` file to see a variety of examples.
 
-The following examples are also in the file `importtest.py` which you can run to test
-your installation and your `__init__.py` configuration.
-
-```
-# Example imports and use of package that will work
-# even if package __init__.py files are empty.
-
-# Use function defined in a top module
-import pypkgskeleton.topmodule2
-pypkgskeleton.topmodule2.mtest()
-# Prints: This is pypkgskeleton.topmodule2
-
-# Same as above, but using 'from' to save some typing in the function call
-from pypkgskeleton import topmodule1
-topmodule1.mtest()
-# Prints: This is pypkgskeleton.topmodule1
-
-# Access function in a module in a sub-package
-import pypkgskeleton.subpkg1.module1
-pypkgskeleton.subpkg1.module1.mtest()
-# Prints: This is pypkgseleton.subpkg1.module1
-
-###########################################################
-
-# To make imports a little cleaner, we can add some imports
-# to the top-level __init__.py file to create aliases and then
-# then we can use these aliases as follows.
-# See the __init__.py file to see how to create these aliases.
-
-# Use function defined in a top module
-from pypkgskeleton import TM2mtest
-TM2mtest()
-# Prints: This is pypkgskeleton.topmodule2
-
-# Use function defined in a module in a sub-package
-from pypkgskeleton import Sub1M1mtest
-Sub1M1mtest()
-# Prints: This is pypkgseleton.subpkg1.module1
-
-# Use a module-level alias
-from pypkgskeleton import Sub2M2
-Sub2M2.mtest()
-```
+The `dir()` function can be helpful in debugging import configurations. Use `dir()` at the
+top level to see what has been imported. To see what has been imported for a given module
+or package, use `dir(module or package name)`.
