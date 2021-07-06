@@ -204,6 +204,11 @@ pip install --force-reinstall git+ssh://git@gitlab.com/<repo_path>.git@<tag_or_b
 Use `pip list` or `pip freeze` to see what is installed.
 Use `pip uninstall pypkgskeleton` to remove the package from the virutal environment.
 
+## AWS Lambda installation
+When using you package with a Lambda function, you should either create a Lambda layer
+or install the packages locally. To add locally, add the `--upgrade` and `-t .` parameters
+to the `pip` command.
+
 # Importing your package
 There is a direct connection between what (if anything) you put in your top-level
 `__init__.py` file and how the client application imports your objects.
